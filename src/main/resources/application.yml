@@ -1,0 +1,17 @@
+server:
+  port: 8085
+spring:
+  application:
+    name: client-microservice
+  config:
+    import: configserver:http://localhost:8888
+  profiles:
+    active: dev
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
