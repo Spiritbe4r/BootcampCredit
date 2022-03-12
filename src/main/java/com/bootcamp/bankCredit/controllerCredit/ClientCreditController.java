@@ -16,15 +16,15 @@ public class ClientCreditController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ClientCreditController.class);
     @Autowired
-private ClientCreditService clientCreditService;
-     @GetMapping()
+    private ClientCreditService clientCreditService;
+    @GetMapping()
     public Flux<ClientCreditDto> getClients(){
          LOGGER.debug("Search Clients..!");
          return clientCreditService.getClients();
      }
      @GetMapping("/greeting")
      public Mono<String> greet(){return Mono.just("hello world");}
-     @GetMapping
+     @PostMapping
     public Mono<ClientCreditDto> saveClientCredit(@RequestBody Mono<ClientCreditDto> clientDtoMono){
          return  clientCreditService.saveClientsCredit(clientDtoMono);
      }
