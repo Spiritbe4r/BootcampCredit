@@ -1,4 +1,4 @@
-package com.bootcamp.bankCredit.dto;
+package com.bootcamp.bankCredit.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,10 +9,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ClientCreditDto {
-    private String id;
+public class ClientType {
+
     private String name;
-    private String lastName;
-    private String dni;
-    private String account;
+    private String code;
 }
