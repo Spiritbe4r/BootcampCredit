@@ -32,7 +32,7 @@ public class Credit  {
     private String contractNumber;
 
     @NotNull
-    private String customerIdNumber;
+    private String clientIdNumber;
 
     private double amountInitial;
 

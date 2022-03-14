@@ -10,5 +10,5 @@ import lombok.*;
 public class ClientDTO {
     private String name;
     private String code;
-    private String customerIdNumber;
+    private String clientIdNumber;
 }

@@ -43,8 +43,9 @@ public class CreditServiceImpl implements CreditService {
     @Override
     public Mono<Credit> validateClientIdNumber(String clientIdNumber) {
         return creditRepository.findByClientIdNumber(clientIdNumber)
-                .switchIfEmpty(Mono.just(Credit.builder().customerIdNumber(null).build()));
+                .switchIfEmpty(Mono.just(Credit.builder().clientIdNumber(null).build()));
     }
+
 
     @Override
     public Mono<Credit> create(Credit obj) {

@@ -8,11 +8,10 @@ import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-@Repository
 public interface CreditRepository extends ReactiveMongoRepository<Credit, String> {
 
-    Flux<Credit> findAllByClientIdNumber(String customerIdentityNumber);
-    Mono<Credit> findByClientIdNumber(String customerIdentityNumber);
+    Flux<Credit> findAllByClientIdNumber(String clientIdNumber);
+    Mono<Credit> findByClientIdNumber(String clientIdNumber);
     Mono<Credit> findByContractNumber(String contractNumber);
 
 

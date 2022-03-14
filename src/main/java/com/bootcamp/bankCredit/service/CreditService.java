@@ -13,8 +13,8 @@ public interface CreditService extends CrudService<Credit,String>{
 
     Mono<Client> getClient(String clientIdNumber);
 
-    Flux<Credit> findAllByClientIdNumber(String customerIdNumber);
+    Flux<Credit> findAllByClientIdNumber(String clientIdNumber);
 
-    Mono<Credit> validateClientIdNumber(String customerIdNumber);
+    Mono<Credit> validateClientIdNumber(String clientIdNumber);
 
 }
