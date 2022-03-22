@@ -9,6 +9,3 @@ spring:
     pathmatch:
       matching-strategy: ant_path_matcher
 
-
-microservice-client:
-  uri: http://localhost:8095/api/client
