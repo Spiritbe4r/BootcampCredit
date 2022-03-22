@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Client {
 
-    private String name;
-    private String clientIdType;
-    private String clientIdNumber;
-    private ClientType clientType;
+  private String name;
+  private String clientIdType;
+  private String clientIdNumber;
+  private ClientType clientType;
 }

@@ -11,6 +11,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ClientType {
 
-    private String name;
-    private String code;
+  private String name;
+  private String code;
 }

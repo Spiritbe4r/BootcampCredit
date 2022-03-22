@@ -8,14 +8,15 @@ import org.springframework.beans.BeanUtils;
 
 public class AppUtils {
 
-    public static CreditDTO entityToDto(Credit credit){
-        CreditDTO creditDTO= new CreditDTO();
-        BeanUtils.copyProperties(credit,creditDTO);
-        return creditDTO;
-    }
-    public static Credit DtoToEntity(CreditDTO creditDTO){
-        Credit credit = new Credit();
-        BeanUtils.copyProperties(creditDTO, credit);
-        return credit;
-    }
+  public static CreditDTO entityToDto(Credit credit) {
+    CreditDTO creditDTO = new CreditDTO();
+    BeanUtils.copyProperties(credit, creditDTO);
+    return creditDTO;
+  }
+
+  public static Credit DtoToEntity(CreditDTO creditDTO) {
+    Credit credit = new Credit();
+    BeanUtils.copyProperties(creditDTO, credit);
+    return credit;
+  }
 }

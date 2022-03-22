@@ -3,15 +3,44 @@ package com.bootcamp.bankCredit.service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-public interface CrudService<T,ID> {
+public interface CrudService<T, ID> {
 
-    Mono<T> create(T obj);
+  /**
+   * Create mono.
+   *
+   * @param obj the obj
+   * @return the mono
+   */
+  Mono<T> create(T obj);
 
-    Flux<T> findAll();
+  /**
+   * Find all flux.
+   *
+   * @return the flux
+   */
+  Flux<T> findAll();
 
-    Mono<T> findById(ID id);
+  /**
+   * Find by id mono.
+   *
+   * @param id the id
+   * @return the mono
+   */
+  Mono<T> findById(ID id);
 
-    Mono<T> update(T obj);
+  /**
+   * Update mono.
+   *
+   * @param obj the obj
+   * @return the mono
+   */
+  Mono<T> update(T obj);
 
-    Mono<Void> delete(T obj);
+  /**
+   * Delete mono.
+   *
+   * @param obj the obj
+   * @return the mono
+   */
+  Mono<Void> delete(T obj);
 }

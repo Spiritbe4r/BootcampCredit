@@ -10,9 +10,13 @@ import reactor.core.publisher.Mono;
 
 public interface CreditRepository extends ReactiveMongoRepository<Credit, String> {
 
-    Flux<Credit> findAllByClientIdNumber(String clientIdNumber);
-    Mono<Credit> findByClientIdNumber(String clientIdNumber);
-    Mono<Credit> findByContractNumber(String contractNumber);
+  Flux<Credit> findAllByClientIdNumber(String clientIdNumber);
+
+  Mono<Credit> findByClientIdNumber(String clientIdNumber);
+
+  Mono<Credit> findByContractNumber(String contractNumber);
+
+  Integer countByClientIdNumber(String clientIdNumber);
 
 
 }

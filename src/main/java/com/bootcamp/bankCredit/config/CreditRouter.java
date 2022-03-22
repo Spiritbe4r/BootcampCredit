@@ -14,13 +14,21 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 @Configuration
 public class CreditRouter {
 
-    @Bean
-    public RouterFunction<ServerResponse> routes(final CreditHandler creditHandler){
-        return route(GET("/api/credit"), creditHandler::findAll)
-                .andRoute(POST("/api/credit"), creditHandler::createCredit)
-                .andRoute(GET("/api/credit/{contractNumber}"), creditHandler::findCredit)
-                .andRoute(DELETE("/api/credit/{id}"),creditHandler::deleteCredit);
-    }
+  /**
+   * Routes router function.
+   *
+   * @param creditHandler the credit handler
+   * @return the router function
+   */
+  @Bean
+  public RouterFunction<ServerResponse> routes(final CreditHandler creditHandler) {
+    return route(GET("/api/credit"), creditHandler::findAll)
+          .andRoute(GET("/api/credit/client/{clientIdNumber}"),
+                creditHandler::findAllByClientIdNumber)
+          .andRoute(POST("/api/credit"), creditHandler::createCredit)
+          .andRoute(GET("/api/credit/{contractNumber}"), creditHandler::findCredit)
+          .andRoute(DELETE("/api/credit/{id}"), creditHandler::deleteCredit);
+  }
 
 
 }

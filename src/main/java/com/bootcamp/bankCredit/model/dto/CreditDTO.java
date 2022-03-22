@@ -8,25 +8,25 @@ import java.time.LocalDateTime;
 
 public class CreditDTO {
 
-    private String id;
-    private double capital;
+  private String id;
+  private double capital;
 
-    private LocalDateTime dateOperation = LocalDateTime.now();
+  private LocalDateTime dateOperation = LocalDateTime.now();
 
-    private String contractNumber;
+  private String contractNumber;
 
-    private String clientIdNumber;
+  private String clientIdNumber;
 
-    private double amountInitial;
+  private double amountInitial;
 
-    private double amount;
+  private double amount;
 
-    private String chargeDay;
+  private String chargeDay;
 
-    private double commission;
+  private double commission;
 
-    private double interestRate;
+  private double interestRate;
 
-    private boolean debitor;
+  private boolean debitor;
 
 }
