@@ -33,7 +33,7 @@ jobs:
         
       - name: Using Variables
         env:
-          SERVICE_NAME: ${{ secrets.AZR_CREDS[serviceName]) }}
+          SERVICE_NAME: ${{ secrets.AZR_CREDS.sprincloud.serviceName }}
         run: echo $SERVICE_NAME
 
       - name: Azure Spring Cloud
