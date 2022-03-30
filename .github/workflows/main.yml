@@ -26,11 +26,15 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZR_CREDS }}
+      - name: Get Subscription ID
+        run: |
+          echo "SUBSCRIPTION_ID=$(az account show --query id --output tsv --only-show-errors)" >> $GITHUB_ENV
+        shell: bash
 
       - name: deploy to production with artifact
         uses: azure/spring-cloud-deploy@v1
         with:
-          azure-subscription: ${{ secrets.AZR_CREDS['subscriptionId'] }}
+          azure-subscription: ${{ env.SUBSCRIPTION_ID }}
           action: Deploy
           service-name: azurespringboot2022
           app-name: creditmicroservice
