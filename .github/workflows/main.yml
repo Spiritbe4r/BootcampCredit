@@ -30,9 +30,9 @@ jobs:
       - name: deploy to production with artifact
         uses: azure/spring-cloud-deploy@v1
         with:
-          azure-subscription: 03abccce-03d2-441f-97f1-70ef703395f1
+          azure-subscription: ${{ secrets.AZR_CREDS['subscriptionId'] }}
           action: Deploy
-          service-name: ${{ secrets.AZR_CREDS.serviceName }}
-          app-name: ${{ secrets.AZR_CREDS.appName }}
+          service-name: azurespringboot2022
+          app-name: creditmicroservice
           use-staging-deployment: false
-          package: ${{ secrets.AZR_CREDS.jarFile }}
+          package: ${{ env.ASC_PACKAGE_PATH }}
