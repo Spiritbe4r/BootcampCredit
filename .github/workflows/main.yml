@@ -23,11 +23,11 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZR_CREDS }}
-    - name: Deploy to Azure Spring Cloud
-      uses: azure/spring-cloud-deploy@v1
+    - name: Azure Spring Cloud
+      uses: Azure/spring-cloud-deploy@v1
       with:
         action: Deploy
-        azure-subscription: ${{ env.AZURE_SUBSCRIPTION }}
+        azure-subscription: ${{ secrets.AZR_CREDS.subscriptionId }}
         service-name: ${{ secrets.AZR_CREDS.serviceName }}
         app-name: ${{ secrets.AZR_CREDS.appName }}
         use-staging-deployment: false
