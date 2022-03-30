@@ -1,0 +1,16 @@
+com\bootcamp\bankCredit\config\CreditRouter.class
+com\bootcamp\bankCredit\model\dto\ClientDTO$ClientDTOBuilder.class
+com\bootcamp\bankCredit\repository\CreditRepository.class
+com\bootcamp\bankCredit\model\dto\Client.class
+com\bootcamp\bankCredit\service\CrudService.class
+com\bootcamp\bankCredit\handlers\CreditHandler.class
+com\bootcamp\bankCredit\model\dto\ClientDTO.class
+com\bootcamp\bankCredit\utils\AppUtils.class
+com\bootcamp\bankCredit\model\dto\ClientType.class
+com\bootcamp\bankCredit\service\CreditService.class
+com\bootcamp\bankCredit\BankCreditApplication.class
+com\bootcamp\bankCredit\model\dto\Client$ClientBuilder.class
+com\bootcamp\bankCredit\model\entities\Credit.class
+com\bootcamp\bankCredit\service\impl\CreditServiceImpl.class
+com\bootcamp\bankCredit\model\dto\CreditDTO.class
+com\bootcamp\bankCredit\model\entities\Credit$CreditBuilder.class

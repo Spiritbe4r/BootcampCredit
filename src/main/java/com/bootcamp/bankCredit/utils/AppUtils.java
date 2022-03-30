@@ -1,7 +1,5 @@
 package com.bootcamp.bankCredit.utils;
 
-
-import com.bootcamp.bankCredit.model.dto.Client;
 import com.bootcamp.bankCredit.model.dto.CreditDTO;
 import com.bootcamp.bankCredit.model.entities.Credit;
 import org.springframework.beans.BeanUtils;
