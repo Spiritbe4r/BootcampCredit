@@ -1,10 +1,10 @@
-name: Build and deploy to Azure Spring Cloud
+name: Build and deploy to Azure Cloud
 
 on: [push]
 
 env:
   ASC_PACKAGE_PATH: ${{ github.workspace }}
-  AZURE_SUBSCRIPTION: ${{ secrets.AZR_CREDS.subscriptionId }}
+
 
 jobs:
   deploy_to_production:
@@ -26,13 +26,17 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZR_CREDS }}
-
-      - name: deploy to production with artifact
-        uses: azure/spring-cloud-deploy@v1
+      - name: Get Subscription ID
+        run: |
+          echo "SUBSCRIPTION_ID=$(az account show --query id --output tsv --only-show-errors)" >> $GITHUB_ENV
+        shell: bash
+        
+      - name: Deploy to Azure Cloud
+        uses: Azure/spring-cloud-deploy@v1
         with:
-          azure-subscription: ${{ env.AZURE_SUBSCRIPTION }}
-          action: Deploy
-          service-name: ${{ secrets.AZR_CREDS.serviceName }}
-          app-name: ${{ secrets.AZR_CREDS.appName }}
+          azure-subscription: ${{ env.SUBSCRIPTION_ID }}
+          action: deploy
+          service-name: azurespringboot2022
+          app-name: creditmicroservice
           use-staging-deployment: false
-          package: ${{ secrets.AZR_CREDS.jarFile }}
+          package: ${{ env.ASC_PACKAGE_PATH }}/**/*.jar
