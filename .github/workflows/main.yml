@@ -38,5 +38,5 @@ jobs:
           action: deploy
           service-name: azurespringboot2022
           app-name: creditmicroservice
-          use-staging-deployment: true
+          use-staging-deployment: false
           package: ${{ env.ASC_PACKAGE_PATH }}/**/*.jar
