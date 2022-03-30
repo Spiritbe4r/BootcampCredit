@@ -4,7 +4,7 @@ on: [push]
 
 env:
   ASC_PACKAGE_PATH: ${{ github.workspace }}
-  AZURE_SUBSCRIPTION: ${{ secrets.AZR_CREDS.subscriptionId }}
+
 
 jobs:
   deploy_to_production:
@@ -33,7 +33,7 @@ jobs:
         
       - name: Using Variables
         env:
-          SERVICE_NAME: ${{ secrets.AZR_CREDS(serviceName) }}
+          SERVICE_NAME: ${{ secrets.AZR_CREDS[serviceName]) }}
         run: echo $SERVICE_NAME
 
       - name: Azure Spring Cloud
