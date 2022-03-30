@@ -1,6 +1,9 @@
 name: Build and deploy to Azure Spring Cloud
 
 on: [push]
+env:
+  ASC_PACKAGE_PATH: ${{ github.workspace }}
+  AZURE_SUBSCRIPTION: ${{ secrets.AZR_CREDS.subscriptionId }}
 
 jobs:
   build-and-deploy:
@@ -22,13 +25,13 @@ jobs:
         creds: ${{ secrets.AZR_CREDS }}
     - name: Get Subscription ID
       run: |
-        echo "SUBSCRIPTION_ID=$(az account show --query id --output tsv --only-show-errors)" 
+        echo "$(az account show --query id --output tsv --only-show-errors)"
       shell: bash
     - name: Deploy to Azure Spring Cloud
       uses: azure/spring-cloud-deploy@v1
       with:
-        action: deploy
-        azure-subscription: ${{ secrets.AZR_CREDS.subscriptionId }}
+        action: Deploy
+        azure-subscription: ${{ env.AZURE_SUBSCRIPTION }}
         service-name: ${{ secrets.AZR_CREDS.serviceName }}
         app-name: ${{ secrets.AZR_CREDS.appName }}
         use-staging-deployment: false
