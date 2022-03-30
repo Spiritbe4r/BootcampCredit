@@ -14,7 +14,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 @SpringBootApplication
 public class BankCreditApplication {
 
-  @Value("${microservice-client.uri}")
+  @Value("${microservices-urls.api-client}")
   private String microserviceClientUrl;
 
   @Bean

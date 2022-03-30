@@ -1,13 +1,8 @@
 spring:
-  application:
-    name: credit-microservice
-
   data:
     mongodb:
       uri: mongodb+srv://spiritbear:Cuymagic321@mycluster.s22zz.mongodb.net/credit?retryWrites=true&w=majority
-  
-  config:
-    import: optional:configserver:${CONFIG_SERVER_URL:http://localhost:8888/}
+
   profiles:
     active: dev
   mvc:
@@ -15,10 +10,10 @@ spring:
       matching-strategy: ant-path-matcher
 
 
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka
 
-microservice-client:
-  uri: http://localhost:8095/api/client
+microservices-urls:
+  api-client: ${API_CLIENT_CONFIG}
