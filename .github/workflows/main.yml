@@ -1,31 +1,35 @@
-name: AzureSpringCloud
-on: push
+name: Build and deploy to Azure Spring Cloud
 
-env:
-  ASC_PACKAGE_PATH: ${{ github.workspace }}
-  AZURE_SUBSCRIPTION: ${{ secrets.AZR_CREDS.subscriptionId }}
-  
+on: [push]
+
 jobs:
-  deploy_to_production:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    name: deploy to production with artifact
     steps:
-      - name: Checkout Github Action
-        uses: actions/checkout@v2
-        
-      - name: Set up JDK 11
-        uses: actions/setup-java@v1
-        with:
-          java-version: 11
-          
-      - name: maven compile, clean
-        run: |
-          mvn clean package -DskipTests
-      - name: Login to Azure Spring Cloud
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZR_CREDS }}
-      - name: Install Azure Spring Cloud extension
-        run: az extension add --name spring-cloud
-      - name: Deploy to Azure Spring Cloud
-        run: az spring-cloud app deploy --name creditmicroservice --service azurespringboot2022  --resource-group AzureSpringBoot --artifact-path target/bankCredit-0.0.1.jar
+    - uses: actions/checkout@v2
+    - name: Set up Java
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'temurin'
+        java-version: 11
+        check-latest: false
+        cache: 'maven'
+    - name: Build with Maven
+      run: mvn package -DskipTests
+    - name: Login to Azure Spring Cloud
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZR_CREDS }}
+    - name: Get Subscription ID
+      run: |
+        echo "SUBSCRIPTION_ID=$(az account show --query id --output tsv --only-show-errors)" >> $GITHUB_ENV
+      shell: bash
+    - name: Deploy to Azure Spring Cloud
+      uses: azure/spring-cloud-deploy@v1
+      with:
+        action: deploy
+        azure-subscription: ${{ secrets.AZR_CREDS.subscriptionId }}
+        service-name: ${{ secrets.AZR_CREDS.serviceName }}
+        app-name: ${{ secrets.AZR_CREDS.appName }}
+        use-staging-deployment: false
+        package: ${{ secrets.AZR_CREDS.jarFile }}
