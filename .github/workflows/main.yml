@@ -23,10 +23,6 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZR_CREDS }}
-    - name: Get Subscription ID
-      run: |
-        echo "$(az account show --query id --output tsv --only-show-errors)"
-      shell: bash
     - name: Deploy to Azure Spring Cloud
       uses: azure/spring-cloud-deploy@v1
       with:
