@@ -1,24 +1,53 @@
 spring:
-  application:
-    name: credit-microservice
-
   data:
     mongodb:
       uri: mongodb+srv://spiritbear:Cuymagic321@mycluster.s22zz.mongodb.net/credit?retryWrites=true&w=majority
-  
-  config:
-    import: optional:configserver:${CONFIG_SERVER_URL:http://localhost:8888/}
+
   profiles:
     active: dev
   mvc:
     pathmatch:
       matching-strategy: ant-path-matcher
 
+microservices-urls:
+  api-client: ${API_CLIENT_CONFIG}
 
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka
 
-microservice-client:
-  uri: http://localhost:8095/api/client
+name: Build and deploy to Azure Spring Cloud
+
+on: [push]
+
+env:
+  ASC_PACKAGE_PATH: ${{ github.workspace }}
+  AZURE_SUBSCRIPTION: ${{ secrets.AZR_CREDS.subscriptionId }}
+
+jobs:
+  deploy_to_production:
+    runs-on: ubuntu-latest
+    name: deploy to production with artifact
+    steps:
+      - name: Checkout Github Action
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      - name: maven build, clean
+        run: |
+          mvn clean package
+      - name: Login to Azure Spring Cloud
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZR_CREDS }}
+
+      - name: deploy to production with artifact
+        uses: azure/spring-cloud-deploy@v1
+        with:
+          azure-subscription: ${{ env.AZURE_SUBSCRIPTION }}
+          action: Deploy
+          service-name: ${{ secrets.AZR_CREDS.serviceName }}
+          app-name: ${{ secrets.AZR_CREDS.appName }}
+          use-staging-deployment: false
+          package: ${{ secrets.AZR_CREDS.jarFile }}

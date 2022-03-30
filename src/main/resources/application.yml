@@ -11,3 +11,4 @@ spring:
 
 microservices-urls:
   api-client: ${API_CLIENT_CONFIG}
+
