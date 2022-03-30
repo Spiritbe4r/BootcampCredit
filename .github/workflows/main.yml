@@ -34,7 +34,7 @@ jobs:
       - name: Using Variables
         env:
           SERVICE_NAME: ${{ secrets.AZR_CREDS.serviceName }}
-      - run: echo $SERVICE_NAME
+        run: echo $SERVICE_NAME
 
       - name: Azure Spring Cloud
         uses: Azure/spring-cloud-deploy@v1
