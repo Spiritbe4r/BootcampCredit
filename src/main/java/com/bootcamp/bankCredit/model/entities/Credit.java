@@ -28,6 +28,8 @@ public class Credit {
 
   @Id
   private String id;
+
+  @NotNull
   private double capital;
 
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
