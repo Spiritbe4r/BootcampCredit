@@ -30,7 +30,7 @@ jobs:
       - name: deploy to production with artifact
         uses: azure/spring-cloud-deploy@v1
         with:
-          azure-subscription: ${{ env.AZURE_SUBSCRIPTION }}
+          azure-subscription: ${{ secrets.AZR_CREDS.subscriptionId }}
           action: Deploy
           service-name: ${{ secrets.AZR_CREDS.serviceName }}
           app-name: ${{ secrets.AZR_CREDS.appName }}
