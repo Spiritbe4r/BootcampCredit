@@ -41,7 +41,7 @@ jobs:
         with:
           azure-subscription: ${{ env.SUBSCRIPTION_ID }}
           action: deploy
-          service-name: azurespringboot2022
+          service-name: ${{ secrets.AZR_CREDS.sprincloud.serviceName }}
           app-name: creditmicroservice
           use-staging-deployment: false
           package: ${{ env.ASC_PACKAGE_PATH }}/**/*.jar
