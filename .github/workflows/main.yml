@@ -30,6 +30,11 @@ jobs:
         run: |
           echo "SUBSCRIPTION_ID=$(az account show --query id --output tsv --only-show-errors)" >> $GITHUB_ENV
         shell: bash
+        
+      - name: Using Variables
+        env:
+          SERVICE_NAME: ${{ secrets.AZR_CREDS.serviceName }}
+      - run: echo $SERVICE_NAME
 
       - name: Azure Spring Cloud
         uses: Azure/spring-cloud-deploy@v1
