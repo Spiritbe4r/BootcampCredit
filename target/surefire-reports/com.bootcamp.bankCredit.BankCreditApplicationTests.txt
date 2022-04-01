@@ -1,9 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.bootcamp.bankCredit.BankCreditApplicationTests
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 8.605 s <<< FAILURE! - in com.bootcamp.bankCredit.BankCreditApplicationTests
-contextLoads  Time elapsed: 0.002 s  <<< ERROR!
-java.lang.IllegalStateException: Failed to load ApplicationContext
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'bankCreditApplication': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'API_CLIENT_CONFIG' in value "${API_CLIENT_CONFIG}"
-Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'API_CLIENT_CONFIG' in value "${API_CLIENT_CONFIG}"
-

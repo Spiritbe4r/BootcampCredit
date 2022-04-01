@@ -1,31 +1,61 @@
+server:
+  port: 8084
+
 spring:
 
   profiles:
-    active: default
+    active: dev
+
+
+---
+spring:
+  cloud:
+    config:
+      activate:
+        on-profile: prod
 
   data:
     mongodb:
+
       uri: mongodb+srv://spiritbear:Cuymagic321@mycluster.s22zz.mongodb.net/credit?retryWrites=true&w=majority
 
+    mvc:
+      pathmatch:
+        matching-strategy: ant-path-matcher
 
 microservices-urls:
   api-client: ${API_CLIENT_CONFIG}
 
 ---
 spring:
+  application:
+    name: credit-microservice
 
   cloud:
     config:
       activate:
         on-profile: dev
 
-  application:
-    name: creditcard-microservice
+      import: optional:configserver:http://localhost:8888
 
-  config:
-    import: optional:configserver:http://localhost:8888
+    mvc:
+      pathmatch:
+        matching-strategy: ant-path-matcher
 
-  mvc:
-    pathmatch:
-      matching-strategy: ant-path-matcher
+    stream:
+      bindings:
+        input:
+          destination: z03ph2bn-default
+        inputTopic:
+          destination: z03ph2bn-default
+  kafka:
+    bootstrap-servers: >-
+      tricycle-01.srvs.cloudkafka.com:9094,tricycle-02.srvs.cloudkafka.com:9094,tricycle-03.srvs.cloudkafka.com:9094
+    properties:
+      security:
+        protocol: SASL_SSL
+      sasl:
+        mechanism: SCRAM-SHA-256
+        jaas:
+          config: org.apache.kafka.common.security.scram.ScramLoginModule required username="z03ph2bn" password="kaC5QUtlHtNkIMmZNAakznYUSXjzKSLL";
 
