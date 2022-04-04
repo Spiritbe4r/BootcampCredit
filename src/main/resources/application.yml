@@ -1,18 +1,15 @@
-server:
-  port: 8084
-
 spring:
 
   profiles:
-    active: dev
+    active: prod
 
 
 ---
 spring:
-  cloud:
-    config:
-      activate:
-        on-profile: prod
+
+  config:
+    activate:
+      on-profile: prod
 
   data:
     mongodb:
@@ -31,17 +28,17 @@ spring:
   application:
     name: credit-microservice
 
-  cloud:
-    config:
-      activate:
-        on-profile: dev
 
-      import: optional:configserver:http://localhost:8888
+  config:
+    activate:
+      on-profile: dev
+
+    import: optional:configserver:http://localhost:8888
 
     mvc:
       pathmatch:
         matching-strategy: ant-path-matcher
-
+  cloud:
     stream:
       bindings:
         input:
